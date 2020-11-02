@@ -23,6 +23,8 @@ const reducer = (state, action) => {
                 completed: false,
                 id: new Date ()
             }]})
+        case('NEW_TODO_TEXT'):
+            return ({...state, input: action.payload})
         default:
             return state
     }
