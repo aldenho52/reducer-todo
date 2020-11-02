@@ -27,7 +27,10 @@ const reducer = (state, action) => {
             return ({...state, input: action.payload})
         case('TOGGLE_COMPLETE'):
             return ({
-                ...state, completed: !state.completed
+                ...state, list: {
+                    ...state.list,
+                    completed: !state.list.completed
+                }
             })
         default:
             return state

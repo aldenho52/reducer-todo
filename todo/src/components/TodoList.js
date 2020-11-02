@@ -16,7 +16,7 @@ const TodoList = () => {
     }
 
     const onClickHandler = (e) => {
-        dispatch(toggleComplete())
+        dispatch(toggleComplete(e))
     }
 
    return (
@@ -25,7 +25,8 @@ const TodoList = () => {
         {
             state.list.map(item => {
                 return (<p key={item.id}
-                    onClick={onClickHandler}    
+                    onClick={onClickHandler}
+                    className={`todo${item.completed ? ' completed' : ''}`}
                     >
                     {item.item}
                     </p>)
