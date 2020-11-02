@@ -1,8 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TodoList from './components/TodoList'
+
+import './App.css';
+
+
+function App() {
+  return (
+    <div className="App">
+      <TodoList />
+    </div>
+  );
+}
+
+export default App;
+
 
 ReactDOM.render(
   <React.StrictMode>
