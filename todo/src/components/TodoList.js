@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react'
 import {reducer, initialState} from '../reducers/index'
-import {addTodo, newTodoText, toggleComplete} from '../actions'
+import {addTodo, newTodoText, toggleComplete, clearCompleted} from '../actions'
 
 const TodoList = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
@@ -15,8 +15,9 @@ const TodoList = () => {
         dispatch(newTodoText(''))
     }
 
-    const onClickHandler = (e) => {
-        dispatch(toggleComplete(e))
+    const clearTodos = (e) => {
+        e.preventDefault()
+        dispatch(clearCompleted())
     }
 
    return (
@@ -25,7 +26,7 @@ const TodoList = () => {
         {
             state.list.map(item => {
                 return (<p key={item.id}
-                    onClick={onClickHandler}
+                    onClick={() => dispatch(toggleComplete(item.id))}
                     className={`todo${item.completed ? ' completed' : ''}`}
                     >
                     {item.item}
@@ -40,6 +41,9 @@ const TodoList = () => {
             onChange={onChange}
             />
             <button>Add Todo</button>
+            <div>
+                <button onClick={clearTodos}>Clear Completed</button>
+            </div>
         </form>
     </div>
     )

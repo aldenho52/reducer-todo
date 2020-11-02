@@ -27,10 +27,25 @@ const reducer = (state, action) => {
             return ({...state, input: action.payload})
         case('TOGGLE_COMPLETE'):
             return ({
-                ...state, list: {
-                    ...state.list,
-                    completed: !state.list.completed
-                }
+                ...state,
+                list: state.list.map(todo => {
+                    if (todo.id !== action.payload) {
+                        return todo
+                    }
+                    return {
+                        ...todo,
+                        completed: !todo.completed
+                    }
+                })
+                })
+        case('CLEAR'):
+            return({
+                ...state,
+                list: state.list.filter(todo => {
+                    if (!todo.completed) {
+                        return todo
+                    }
+                })
             })
         default:
             return state
