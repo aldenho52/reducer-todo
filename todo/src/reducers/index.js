@@ -21,10 +21,14 @@ const reducer = (state, action) => {
             return({...state, list: [...state.list, {
                 item: action.payload,
                 completed: false,
-                id: new Date ()
+                id: new Date()
             }]})
         case('NEW_TODO_TEXT'):
             return ({...state, input: action.payload})
+        case('TOGGLE_COMPLETE'):
+            return ({
+                ...state, completed: !state.completed
+            })
         default:
             return state
     }
